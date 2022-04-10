@@ -9,7 +9,7 @@ def get_card_by_name(name=None)-> str:
 
     Args:
         name (str): The name of the card to be searched
-        for.
+        for. Defaults to None.
 
     Returns:
         str: The card if found, else None.
@@ -36,9 +36,35 @@ def get_card_by_name(name=None)-> str:
         else:
             print(res.text)    
     return res.text
+
     
 get_card_by_name("The wandering emperor")
 get_card_by_name()
+
+
+def get_card_price(name=None)->int:
+    """_summary_
+
+    Args:
+        name (_type_, optional): _description_. Defaults to None.
+
+    Returns:
+        int: _description_
+    """
+    pass
+
+def get_playable_stats(name=None)-> int:
+    """_summary_
+
+    Args:
+        name (_type_, optional): _description_. Defaults to None.
+
+    Returns:
+        int: _description_
+    """
+    pass
+
+
    
 #how to print a price
 #print(res.json()['prices'])
