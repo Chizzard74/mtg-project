@@ -1,5 +1,17 @@
 import requests as r
 
+#things to do:
+#raise bad json errors, stronger queries, add librarary oop syntax
+
+
+class Library():
+    
+    def __init__(self, library={}):
+        self.library = library
+    
+  
+
+
 def get_raw_data_by_name(name=None)-> str:
     """Gets the raw data of a card and searches for it
        on scryfall.net. If no name is provided, ask the
@@ -36,6 +48,8 @@ def get_raw_data_by_name(name=None)-> str:
         else:
             print(res.text)    
     return res.text
+
+#get_raw_data_by_name()
 
 #This function gets specified currency from user
 def specify_currency()->str:
@@ -89,7 +103,7 @@ def get_card_price(name=None)->int:
             print(json_response["prices"][currency])          
 
 
-#get_card_price()
+get_card_price("Mox Opal")
 
 def get_playable_stats(name=None)-> int:
     """_summary_
