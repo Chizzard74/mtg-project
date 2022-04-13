@@ -7,7 +7,7 @@ import requests as r
 class Library():
     
     def __init__(self, library={}):
-        self.library = library
+        self.data = library
     
     def add():
         pass
@@ -28,14 +28,17 @@ class Library():
         Returns:
             bool: True if empty, False otherwise.
         """
-        return len(self.library) < 1
+        return len(self.data) < 1
         
     def __str__(self):
         if self.is_empty():
             return "There is nothing in your library."
         else:
-            return self.library.items()
+            return "".join(str(x) for x in self.data)
 
+#this tests an empty library
+lib = Library()
+print(lib)
 
 def get_raw_data_by_name(name=None)-> str:
     """Gets the raw data of a card and searches for it
@@ -128,7 +131,7 @@ def get_card_price(name=None)->int:
             print(json_response["prices"][currency])          
 
 
-get_card_price("Mox Opal")
+#get_card_price("Mox Opal")
 
 def get_playable_stats(name=None)-> int:
     """_summary_
