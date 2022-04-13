@@ -9,7 +9,32 @@ class Library():
     def __init__(self, library={}):
         self.library = library
     
-  
+    def add():
+        pass
+    
+    def show_library():
+        pass
+    
+    def remove():
+        pass
+    
+    def clear():
+        pass
+    
+    def is_empty(self)-> bool:
+        """Check to see if there are 
+        cards in the library.
+
+        Returns:
+            bool: True if empty, False otherwise.
+        """
+        return len(self.library) < 1
+        
+    def __str__(self):
+        if self.is_empty():
+            return "There is nothing in your library."
+        else:
+            return self.library.items()
 
 
 def get_raw_data_by_name(name=None)-> str:
