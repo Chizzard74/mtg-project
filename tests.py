@@ -17,13 +17,21 @@ class TestLibrary(unittest.TestCase):
         except NameError:
             self.fail("Library Does Not Exist :(")
         
-    ## def test_size_of_library(self):
-    #     """Library should have a size of
-    #     1 plus the amount of cards contained
-    #     in the collection. 
-    #     """
-    #     lib = Library()
-    #     self.assertEqual(0, lib.size)
+    def test_size_of_library(self):
+        """Library should have a size of
+        1 plus the amount of cards contained
+        in the collection. 
+        """
+        lib = Library()
+        self.assertEqual(0, lib.size)
+        
+    def test_init_of_data(self):
+        """Library should have dictionary as
+        data structure for holding names
+        and counts.
+        """
+        lib = Library()
+        self.assertEqual(type({}), type(lib.data))
         
 
 if __name__ == '__main__':

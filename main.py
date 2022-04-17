@@ -6,8 +6,9 @@ print(r)
 
 class Library():
     
-    def __init__(self, library={}):
-        self.data = library
+    def __init__(self):
+        self.data = {}
+        self.size = 0
     
     def add():
         pass
