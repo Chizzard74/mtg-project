@@ -124,6 +124,7 @@ class Library():
     def __init__(self):
         self.data = {}
         self.size = 0
+        
     
     def add(self, name:str)->bool:
         """Add a card to the library.
@@ -136,7 +137,17 @@ class Library():
                     False if the card was not 
                     found in the api call.
         """
-        pass
+        if self.validate_name(name) == False:
+            return False
+        else:
+            if name not in self.data:
+                self.data[name] = 1
+                self.size += 1
+            else:
+                self.data[name] += 1
+                self.size += 1
+        return True
+            
     
     def validate_name(self, name:str)->bool:
         """Check to make sure the card name 

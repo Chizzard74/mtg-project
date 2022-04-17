@@ -2,10 +2,6 @@ import unittest
 import time
 from main import Library
 
-def test_startup():    
-        print("testing")
-        print("start")
-        print("Completed")
         
 class TestLibrary(unittest.TestCase):    
         
@@ -48,6 +44,21 @@ class TestLibrary(unittest.TestCase):
         self.assertEqual(True, lib.validate_name("The Wandering Emperor"))
         self.assertEqual(False, lib.validate_name("Bob"))
         self.assertEqual(True, lib.validate_name("Kaito Shizuki"))
+        
+    def test_add_one(self):
+        """Add the first card into the dictionary.
+        """
+        lib = Library()
+        lib.add("The Wandering Emperor")
+        self.assertEqual(True, "The Wandering Emperor" in lib.data)
+        
+    def test_size_after_add(self):
+        """Size of library should be 1 after adding one card.
+        """
+        lib = Library()
+        lib.add("The Wandering Emperor")
+        self.assertEqual(1, lib.size)
+        
 
 if __name__ == '__main__':
     unittest.main()
