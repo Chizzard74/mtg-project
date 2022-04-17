@@ -64,10 +64,19 @@ class TestLibrary(unittest.TestCase):
         """
         lib = Library()
         lib.add("The Wandering Emperor")
-        lib.add("The Wandering Emperor")
-        
+        lib.add("The Wandering Emperor")        
         self.assertEqual(2, lib.size)
         self.assertEqual(2, lib.data["The Wandering Emperor"])
+        
+    def test_size_after_two(self):
+        """size of library should be two when two cards are added.
+        """
+        card = "The wandering emperor"
+        lib = Library()
+        lib.add(card)
+        self.assertEqual(1, lib.size)
+        lib.add(card)
+        self.assertEqual(2, lib.size)
         
 
 if __name__ == '__main__':
