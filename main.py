@@ -212,11 +212,14 @@ class Library():
         return self.size == 0
         
     def __str__(self):
+        sb = ""
         if self.is_empty():
             return "There is nothing in your library."
         else:
-            return "".join(str(x) for x in self.data)
+            for k,v in self.data.items():
+                form = f'Name: {k} Count: {v}'
+                sb += form
+            return sb
+           # return "".join(str(x) for x in self.data.items())
 
-#this tests an empty library
-lib = Library()
-print(lib)
+

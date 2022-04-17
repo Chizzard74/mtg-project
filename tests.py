@@ -1,5 +1,4 @@
 import unittest
-import time
 from main import Library
 
         
@@ -50,6 +49,7 @@ class TestLibrary(unittest.TestCase):
         """
         lib = Library()
         lib.add("The Wandering Emperor")
+        print(lib)
         self.assertEqual(True, "The Wandering Emperor" in lib.data)
         
     def test_size_after_add(self):
@@ -58,6 +58,15 @@ class TestLibrary(unittest.TestCase):
         lib = Library()
         lib.add("The Wandering Emperor")
         self.assertEqual(1, lib.size)
+        
+    def test_add_two(self):
+        """Adding two cards should increase their count.
+        """
+        lib = Library()
+        lib.add("The Wandering Emperor")
+        lib.add("The Wandering Emperor")
+        self.assertEqual(2, lib.size)
+        self.assertEqual(2, lib.data["The Wandering Emperor"])
         
 
 if __name__ == '__main__':
