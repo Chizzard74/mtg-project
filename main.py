@@ -211,7 +211,7 @@ class Library():
         """
         return self.size == 0
         
-    def __str__(self):
+    def __str__(self)->str:
         sb = ""
         if self.is_empty():
             return "There is nothing in your library."
@@ -220,6 +220,6 @@ class Library():
                 form = f'Name: {k} Count: {v}'
                 sb += form
             return sb
-           # return "".join(str(x) for x in self.data.items())
+
 
 

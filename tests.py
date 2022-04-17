@@ -65,6 +65,7 @@ class TestLibrary(unittest.TestCase):
         lib = Library()
         lib.add("The Wandering Emperor")
         lib.add("The Wandering Emperor")
+        
         self.assertEqual(2, lib.size)
         self.assertEqual(2, lib.data["The Wandering Emperor"])
         
