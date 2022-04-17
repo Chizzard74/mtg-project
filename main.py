@@ -165,13 +165,14 @@ class Library():
         else:
             return True
             
-    def show_library(self)->None:
+    def show_library(self)->True:
         """Show all cards and their amounts.
 
         Returns:
-             None
+             True
         """
-        pass
+        print(self.data)
+        return True
     
     def remove(self, name:str)->bool:
         """Removes a card from the library.
@@ -228,11 +229,8 @@ class Library():
             return "There is nothing in your library."
         else:
             for k,v in self.data.items():
-                form = f'Name: {k} Count: {v}'
-                sb += form
+                builder = f'Name: {k} Count: {v}'
+                sb += builder
             return sb
 
 
-
-lib = Library()
-lib.get_random_kami()

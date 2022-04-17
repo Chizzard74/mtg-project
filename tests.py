@@ -86,6 +86,14 @@ class TestLibrary(unittest.TestCase):
     #     name = lib.get_random_kami()
     #     self.assertEqual(True, lib.validate_name(name))
         
+    # def test_show_library(self):
+    #     """Show library should show the output of
+    #     the data.
+    #     """
+    #     lib = Library()
+    #     for _ in range (5):
+    #         lib.add(lib.get_random_kami())        
+    #     self.assertEqual(True, lib.show_library())
 
 if __name__ == '__main__':
     unittest.main()
