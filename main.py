@@ -223,7 +223,28 @@ class Library():
         """
         random_card = r.get("https://api.scryfall.com/cards/random?q=e:neo")
         return random_card.json()['name']
+    
+    def get_name(self)->str:
+        """Gets the name of a card from the database
+
+        Returns:
+            str: name of card.
+        """
+        if self.is_empty():
+            print("Empty Library")
+            return False
+        else:
+            options = [name for name in self.data.keys()]
+            print(options)
+            card = str(input("Type the card you wish to get:"))
+            if self.validate_name(card):
+                return card
+            else:
+                print("That is not a valid name, Goodbye!")
+                return False
         
+        
+                    
         
     def __str__(self)->str:
         sb = ""

@@ -106,6 +106,16 @@ class TestLibrary(unittest.TestCase):
         self.assertEqual(2, lib.size)
         lib.clear()
         self.assertEqual(0, lib.size)
+        
+    def test_get_name(self):
+        """Retrieve a card from the database should
+        return the card name, or false.
+        """
+        lib = Library()
+        lib.add("The Wandering Emperor")
+        chioce = lib.get_name()
+        self.assertEqual("The Wandering Emperor", chioce)
+        self.assertEqual(True, "BOB" is not chioce)
 
         
 if __name__ == '__main__':
