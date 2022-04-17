@@ -78,13 +78,13 @@ class TestLibrary(unittest.TestCase):
     #     lib.add(card)
     #     self.assertEqual(2, lib.size)
     
-    def test_random_kami(self):
-        """Random Kami function should return
-        a valid card name in the set.
-        """
-        lib = Library()
-        name = lib.get_random_kami()
-        self.assertEqual(True, lib.validate_name(name))
+    # def test_random_kami(self):
+    #     """Random Kami function should return
+    #     a valid card name in the set.
+    #     """
+    #     lib = Library()
+    #     name = lib.get_random_kami()
+    #     self.assertEqual(True, lib.validate_name(name))
         
 
 if __name__ == '__main__':

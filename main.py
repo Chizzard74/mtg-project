@@ -219,8 +219,8 @@ class Library():
             str: Name of a random card from the Neo set.
         """
         random_card = r.get("https://api.scryfall.com/cards/random?q=e:neo")
-        rand = random_card.json()['name']
-        return rand
+        return random_card.json()['name']
+        
         
     def __str__(self)->str:
         sb = ""
