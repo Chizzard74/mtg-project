@@ -55,7 +55,7 @@ def specify_currency()->str:
     display_options = '''Select from one of the following currencies:\n"usd", "usd_foil", "usd_etched", "eur", "eur_foil", "tix"'''    
     print(display_options)
     currency = str(input("Enter currency: "))
-    if currency.lower() not in results:
+    if currency.strip().lower() not in results:
         return None
     else:
         return currency
