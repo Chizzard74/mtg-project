@@ -79,7 +79,7 @@ class Library():
 lib = Library()
 print(lib)
 
-def get_raw_data_by_name(name=None)-> str:
+def get_raw_data_by_name(name=None)-> bool:
     """Gets the raw data of a card and searches for it
        on scryfall.net. If no name is provided, ask the
        user in the fucntion call. If the card does not 
@@ -89,29 +89,31 @@ def get_raw_data_by_name(name=None)-> str:
         name (str): The name of the card to be searched
         for. Defaults to None.
     Returns:
-        str: The card if found, else None.
+        bool: True if the card was found, Flase otherwise.
     """
     if name:
         res = r.get(f"https://api.scryfall.com/cards/named?fuzzy={name}")
-        if res.status_code == 404:
+        if res.status_code >= 404:
             replay =  input("Sorry That is not a valid card name,\nDo you want to try again: type 'yes or no?'")
             if 'y' in replay:
                 get_raw_data_by_name(name)
             else:
-                return            
+                return False          
         else:
             print(res.text)
+            return True
     else:            
         name = input("Enter a card name: ")
         res = r.get(f"https://api.scryfall.com/cards/named?fuzzy={name}")
-        if res.status_code == 404:
+        if res.status_code >= 404:
             replay =  input("Sorry That is not a valid card name,\nDo you want to try again: type 'yes or no?'")
             if 'y' in replay:
                 get_raw_data_by_name()
             else:
-                return           
+                return False          
         else:
-            print(res.text)    
+            print(res.text)
+            return True    
     return res.text
 
 #get_raw_data_by_name()
@@ -142,7 +144,7 @@ def get_card_price(name=None)->int:
     currency = specify_currency()
     if name:
         res = r.get(f"https://api.scryfall.com/cards/named?fuzzy={name}")
-        if res.status_code == 404:
+        if res.status_code >= 404:
             replay =  input("Sorry That is not a valid card name,\nDo you want to try again: type 'yes or no?'")
             if 'y' in replay:
                 get_card_price(name)
@@ -154,7 +156,7 @@ def get_card_price(name=None)->int:
     else:
         name = input("Enter a card name: ")
         res = r.get(f"https://api.scryfall.com/cards/named?fuzzy={name}")
-        if res.status_code == 404:
+        if res.status_code >= 404:
             replay =  input("Sorry That is not a valid card name,\nDo you want to try again: type 'yes or no?'")
             if 'y' in replay:
                 get_card_price()
@@ -188,3 +190,4 @@ def get_playable_stats(name=None)-> int:
 
 # #retrieve one random card from set = kaimgawa
 # random_card = r.get("https://api.scryfall.com/cards/random?q=e:neo")
+###!!!parse just the name out and add to libarary later

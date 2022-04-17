@@ -31,8 +31,7 @@ class TestLibrary(unittest.TestCase):
         and counts.
         """
         lib = Library()
-        self.assertEqual(type({}), type(lib.data))
-        
+        self.assertEqual(type({}), type(lib.data))        
     
     def test_is_empty(self):
         """Library should return True if it is
