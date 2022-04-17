@@ -4,80 +4,7 @@ import requests as r
 #raise bad json errors, stronger queries, add librarary oop syntax
 print(r)
 
-class Library():
-    
-    def __init__(self):
-        self.data = {}
-        self.size = 0
-    
-    def add(self, name:str)->bool:
-        """Add a card to the library.
 
-        Args:
-            name (str): card name to be added 
-
-        Returns:
-            bool: returns True if card is added,
-                    False if the card was not 
-                    found in the api call.
-        """
-        pass
-    
-    def show_library(self)->None:
-        """Show all cards and their amounts.
-
-        Returns:
-             None
-        """
-        pass
-    
-    def remove(self, name:str)->bool:
-        """Removes a card from the library.
-
-        Args:
-            name (str): Card name to be removed.
-
-        Returns:
-            bool: True if removal was success,
-                  False if not successful.
-        """
-        pass
-    
-    def clear(self)->bool:
-        """Remove all cards from the library.
-
-        Returns:
-            bool: True if successful,
-                  False if not successful.
-        """
-        pass
-    
-    def get_size(self)->int:
-        """Get the total numbert of 
-        cards in the library.
-
-        Returns:
-            int: Total nuber of cards in libaray.
-        """
-        return self.size
-    
-    def is_empty(self)-> bool:
-        """Check to see if there are 
-        cards in the library.
-        Returns:
-            bool: True if empty, False otherwise.
-        """
-        return self.size == 0
-        
-    def __str__(self):
-        if self.is_empty():
-            return "There is nothing in your library."
-        else:
-            return "".join(str(x) for x in self.data)
-
-#this tests an empty library
-lib = Library()
-print(lib)
 
 def get_raw_data_by_name(name=None)-> bool:
     """Gets the raw data of a card and searches for it
@@ -191,3 +118,94 @@ def get_playable_stats(name=None)-> int:
 # #retrieve one random card from set = kaimgawa
 # random_card = r.get("https://api.scryfall.com/cards/random?q=e:neo")
 ###!!!parse just the name out and add to libarary later
+
+class Library():
+    
+    def __init__(self):
+        self.data = {}
+        self.size = 0
+    
+    def add(self, name:str)->bool:
+        """Add a card to the library.
+
+        Args:
+            name (str): card name to be added 
+
+        Returns:
+            bool: returns True if card is added,
+                    False if the card was not 
+                    found in the api call.
+        """
+        pass
+    
+    def validate_name(self, name:str)->bool:
+        """Check to make sure the card name 
+        is found in the api call.
+
+        Args:
+            name (str): Card name to be searched.
+
+        Returns:
+            bool: True if the card was found, False otherwise.
+        """
+        res = r.get(f"https://api.scryfall.com/cards/named?fuzzy={name}")
+        if res.status_code >= 404:
+           return False
+        else:
+            return True
+            
+    def show_library(self)->None:
+        """Show all cards and their amounts.
+
+        Returns:
+             None
+        """
+        pass
+    
+    def remove(self, name:str)->bool:
+        """Removes a card from the library.
+
+        Args:
+            name (str): Card name to be removed.
+
+        Returns:
+            bool: True if removal was success,
+                  False if not successful.
+        """
+        pass
+    
+    def clear(self)->bool:
+        """Remove all cards from the library.
+
+        Returns:
+            bool: True if successful,
+                  False if not successful.
+        """
+        pass
+    
+    def get_size(self)->int:
+        """Get the total numbert of 
+        cards in the library.
+
+        Returns:
+            int: Total nuber of cards in libaray.
+        """
+        return self.size
+    
+    def is_empty(self)-> bool:
+        """Check to see if there are 
+        cards in the library.
+        Returns:
+            bool: True if empty, False otherwise.
+        """
+        return self.size == 0
+        
+    def __str__(self):
+        if self.is_empty():
+            return "There is nothing in your library."
+        else:
+            return "".join(str(x) for x in self.data)
+
+#this tests an empty library
+lib = Library()
+print(lib)

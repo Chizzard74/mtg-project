@@ -40,6 +40,14 @@ class TestLibrary(unittest.TestCase):
         lib = Library()
         self.assertEqual(True, lib.is_empty())
         
+    def test_validate_name(self):
+        """Name validator should return true if a 
+        card exists, and false otherwise.
+        """
+        lib = Library()
+        self.assertEqual(True, lib.validate_name("The Wandering Emperor"))
+        self.assertEqual(False, lib.validate_name("Bob"))
+        self.assertEqual(True, lib.validate_name("Kaito Shizuki"))
 
 if __name__ == '__main__':
     unittest.main()
