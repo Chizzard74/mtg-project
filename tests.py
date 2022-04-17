@@ -35,14 +35,14 @@ class TestLibrary(unittest.TestCase):
         lib = Library()
         self.assertEqual(True, lib.is_empty())
         
-    def test_validate_name(self):
-        """Name validator should return true if a 
-        card exists, and false otherwise.
-        """
-        lib = Library()
-        self.assertEqual(True, lib.validate_name("The Wandering Emperor"))
-        self.assertEqual(False, lib.validate_name("Bob"))
-        self.assertEqual(True, lib.validate_name("Kaito Shizuki"))
+    # def test_validate_name(self):
+    #     """Name validator should return true if a 
+    #     card exists, and false otherwise.
+    #     """
+    #     lib = Library()
+    #     self.assertEqual(True, lib.validate_name("The Wandering Emperor"))
+    #     self.assertEqual(False, lib.validate_name("Bob"))
+    #     self.assertEqual(True, lib.validate_name("Kaito Shizuki"))
         
     def test_add_one(self):
         """Add the first card into the dictionary.
@@ -59,24 +59,32 @@ class TestLibrary(unittest.TestCase):
         lib.add("The Wandering Emperor")
         self.assertEqual(1, lib.size)
         
-    def test_add_two(self):
-        """Adding two cards should increase their count.
-        """
-        lib = Library()
-        lib.add("The Wandering Emperor")
-        lib.add("The Wandering Emperor")        
-        self.assertEqual(2, lib.size)
-        self.assertEqual(2, lib.data["The Wandering Emperor"])
+    # def test_add_two(self):
+    #     """Adding two cards should increase their count.
+    #     """
+    #     lib = Library()
+    #     lib.add("The Wandering Emperor")
+    #     lib.add("The Wandering Emperor")        
+    #     self.assertEqual(2, lib.size)
+    #     self.assertEqual(2, lib.data["The Wandering Emperor"])
         
-    def test_size_after_two(self):
-        """size of library should be two when two cards are added.
+    # def test_size_after_two(self):
+    #     """size of library should be two when two cards are added.
+    #     """
+    #     card = "The wandering emperor"
+    #     lib = Library()
+    #     lib.add(card)
+    #     self.assertEqual(1, lib.size)
+    #     lib.add(card)
+    #     self.assertEqual(2, lib.size)
+    
+    def test_random_kami(self):
+        """Random Kami function should return
+        a valid card name in the set.
         """
-        card = "The wandering emperor"
         lib = Library()
-        lib.add(card)
-        self.assertEqual(1, lib.size)
-        lib.add(card)
-        self.assertEqual(2, lib.size)
+        name = lib.get_random_kami()
+        self.assertEqual(True, lib.validate_name(name))
         
 
 if __name__ == '__main__':

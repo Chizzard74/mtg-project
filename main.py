@@ -56,7 +56,7 @@ def specify_currency()->str:
     print(display_options)
     currency = str(input("Enter currency: "))
     if currency.strip().lower() not in results:
-        return None
+        return
     else:
         return currency
     
@@ -116,7 +116,7 @@ def get_playable_stats(name=None)-> int:
 # print(kamigawa)
 
 # #retrieve one random card from set = kaimgawa
-# random_card = r.get("https://api.scryfall.com/cards/random?q=e:neo")
+
 ###!!!parse just the name out and add to libarary later
 
 class Library():
@@ -210,6 +210,17 @@ class Library():
             bool: True if empty, False otherwise.
         """
         return self.size == 0
+    
+    def get_random_kami(self)->str:
+        """Makes an api call to get a random
+        card from the KAMIGAWA NEO set.
+
+        Returns:
+            str: Name of a random card from the Neo set.
+        """
+        random_card = r.get("https://api.scryfall.com/cards/random?q=e:neo")
+        rand = random_card.json()['name']
+        return rand
         
     def __str__(self)->str:
         sb = ""
@@ -223,3 +234,5 @@ class Library():
 
 
 
+lib = Library()
+lib.get_random_kami()
