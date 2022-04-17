@@ -2,7 +2,7 @@ import requests as r
 
 #things to do:
 #raise bad json errors, stronger queries, add librarary oop syntax
-
+print(r)
 
 class Library():
     
@@ -24,7 +24,6 @@ class Library():
     def is_empty(self)-> bool:
         """Check to see if there are 
         cards in the library.
-
         Returns:
             bool: True if empty, False otherwise.
         """
@@ -46,11 +45,9 @@ def get_raw_data_by_name(name=None)-> str:
        user in the fucntion call. If the card does not 
        exist, ask the user if they would like to re enter
        another card name before quitting.
-
     Args:
         name (str): The name of the card to be searched
         for. Defaults to None.
-
     Returns:
         str: The card if found, else None.
     """
@@ -82,7 +79,6 @@ def get_raw_data_by_name(name=None)-> str:
 #This function gets specified currency from user
 def specify_currency()->str:
     """Asks the user for which currency they wish to use.
-
     Returns:
         str: Type of currency the user selects. None otherwise
     """
@@ -98,10 +94,8 @@ def specify_currency()->str:
 #This function gets the card price 
 def get_card_price(name=None)->int:
     """_summary_
-
     Args:
         name (_type_, optional): _description_. Defaults to None.
-
     Returns:
         int: _description_
     """
@@ -135,10 +129,8 @@ def get_card_price(name=None)->int:
 
 def get_playable_stats(name=None)-> int:
     """_summary_
-
     Args:
         name (_type_, optional): _description_. Defaults to None.
-
     Returns:
         int: _description_
     """
