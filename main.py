@@ -193,7 +193,9 @@ class Library():
             bool: True if successful,
                   False if not successful.
         """
-        pass
+        self.data.clear()
+        self.size = 0
+        return self.size == 0
     
     def get_size(self)->int:
         """Get the total numbert of 

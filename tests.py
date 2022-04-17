@@ -94,7 +94,20 @@ class TestLibrary(unittest.TestCase):
     #     for _ in range (5):
     #         lib.add(lib.get_random_kami())        
     #     self.assertEqual(True, lib.show_library())
+    
+    def test_clear(self):
+        """Clear function should set size back to 0
+        and remove all items from the dict.
+        """
+        lib = Library()
+        lib.add("The Wandering Emperor")
+        self.assertEqual(1, lib.size)
+        lib.add("Kaito Shizuki")
+        self.assertEqual(2, lib.size)
+        lib.clear()
+        self.assertEqual(0, lib.size)
 
+        
 if __name__ == '__main__':
     unittest.main()
    
