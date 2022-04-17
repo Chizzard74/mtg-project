@@ -33,6 +33,14 @@ class TestLibrary(unittest.TestCase):
         lib = Library()
         self.assertEqual(type({}), type(lib.data))
         
+    
+    def test_is_empty(self):
+        """Library should return True if it is
+        empty and False if it has at least one card.
+        """
+        lib = Library()
+        self.assertEqual(True, lib.is_empty())
+        
 
 if __name__ == '__main__':
     unittest.main()
