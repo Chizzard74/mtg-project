@@ -22,13 +22,22 @@ class Library():
     def clear():
         pass
     
+    def get_size(self)->int:
+        """Get the total numbert of 
+        cards in the library.
+
+        Returns:
+            int: Total nuber of cards in libaray.
+        """
+        return self.size
+    
     def is_empty(self)-> bool:
         """Check to see if there are 
         cards in the library.
         Returns:
             bool: True if empty, False otherwise.
         """
-        return len(self.data) < 1
+        return self.size == 0
         
     def __str__(self):
         if self.is_empty():
