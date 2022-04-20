@@ -1,7 +1,7 @@
 import requests as r
 
 #things to do:
-#raise bad json errors, stronger queries, add librarary oop syntax
+#raise bad json errors, stronger queries
 print(r)
 
 
@@ -73,28 +73,32 @@ def get_card_price(name=None)->int:
         res = r.get(f"https://api.scryfall.com/cards/named?fuzzy={name}")
         if res.status_code >= 404:
             replay =  input("Sorry That is not a valid card name,\nDo you want to try again: type 'yes or no?'")
-            if 'y' in replay:
+            if 'y' in replay.lower().strip():
                 get_card_price(name)
             else:
                return "Goodbye" 
         else:
             json_response = res.json()
-            print(json_response["prices"][currency])
+            price = json_response["prices"][currency]
+            print(price)
+            return price
     else:
         name = input("Enter a card name: ")
         res = r.get(f"https://api.scryfall.com/cards/named?fuzzy={name}")
         if res.status_code >= 404:
             replay =  input("Sorry That is not a valid card name,\nDo you want to try again: type 'yes or no?'")
-            if 'y' in replay:
+            if 'y' in replay.lower().strip():
                 get_card_price()
             else:
                 return "Goodbye"
         else:
             json_response = res.json()
-            print(json_response["prices"][currency])          
+            price = json_response["prices"][currency]
+            print(price)
+            return price          
 
 
-#get_card_price("Mox Opal")
+#get_card_price("Tamiyo's Safekeeping")
 
 def get_playable_stats(name=None)-> int:
     """_summary_
@@ -104,6 +108,9 @@ def get_playable_stats(name=None)-> int:
         int: _description_
     """
     pass
+
+
+
 
 
    
@@ -165,7 +172,7 @@ class Library():
         else:
             return True
             
-    def show_library(self)->True:
+    def show_library(self)->bool:
         """Show all cards and their amounts.
 
         Returns:
@@ -184,7 +191,17 @@ class Library():
             bool: True if removal was success,
                   False if not successful.
         """
-        pass
+        if self.is_empty():
+            print(self.data)
+            return False
+        else:
+            if self.validate_name(name):
+                self.data.pop(name)                               
+                self.size -= 1
+                return True
+            else:
+                print("Sorry that card is not in the library.")
+                return False
     
     def clear(self)->bool:
         """Remove all cards from the library.
@@ -214,6 +231,7 @@ class Library():
         """
         return self.size == 0
     
+    
     def get_random_kami(self)->str:
         """Makes an api call to get a random
         card from the KAMIGAWA NEO set.
@@ -242,8 +260,6 @@ class Library():
             else:
                 print("That is not a valid name, Goodbye!")
                 return False
-        
-        
                     
         
     def __str__(self)->str:
