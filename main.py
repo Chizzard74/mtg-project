@@ -109,6 +109,17 @@ def get_playable_stats(name=None)-> int:
     """
     pass
 
+def get_set_names():
+    """_summary_
+
+    Returns:
+        _type_: _description_
+    """
+    pass
+
+def get_set():
+    pass
+
 
 
 
