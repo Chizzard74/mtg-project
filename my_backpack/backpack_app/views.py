@@ -18,16 +18,28 @@ def get_raw_data_by_name(card=None)-> bool:
     Returns:
         bool: True if the card was found, Flase otherwise.
     """
-    if card:
+    
+    if validate_name(card):
         res = r.get(f"https://api.scryfall.com/cards/named?fuzzy={card}")
-        if res.status_code >= 404:
-            replay =  input("Sorry That is not a valid card name,\nDo you want to try again: type 'yes or no?'")
-            if 'y' in replay:
-                get_raw_data_by_name(card)
-            else:
-                return False          
-        else:
-            return res.json()['name']
+        return res.json()['name']
+    else:
+        return "Sorry, That card is not a valid option."
+        
+def validate_name(name:str)->bool:
+    """Check to make sure the card name 
+    is found in the api call.
+
+    Args:
+        name (str): Card name to be searched.
+
+    Returns:
+        bool: True if the card was found, False otherwise.
+    """
+    res = r.get(f"https://api.scryfall.com/cards/named?fuzzy={name}")
+    if res.status_code >= 400:
+        return False
+    else:
+        return True
             
     # else:            
     #     name = input("Enter a card name: ")

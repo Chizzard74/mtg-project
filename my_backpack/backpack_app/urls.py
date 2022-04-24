@@ -8,8 +8,7 @@ urlpatterns = [
     #this path is for add page
     path("add", views.add,  name="add"),
     #this path is add/CARDNAME which will use the cardname for parameter
-    path("add/<str:card>", views.add, name="add"),
-    
+    path("add/<str:card>", views.add, name="add"),    
     path("forms", views.forms, name="forms")
     
 ]
