@@ -44,6 +44,9 @@ def get_raw_data_by_name(card=None)-> bool:
     
     return res.text
 
+def forms(request):
+    return render(request, "backpack/forms.html")
+
 def make_hello():
     return "Function output goes here"
 
