@@ -3,9 +3,12 @@
 
  {% block body %}
     <h1>Enter a card name</h1> 
-        <form action="">
-            <input type="text", name="forms">
+        <form action="{% url 'backpack:index' %}" method="POST">
+            {% csrf_token %}
+            {{ form }}
+            <input type = "text" name='form'>
             <input type="submit">
-        </form>   
+        </form> 
+        <p>Your search history: {{ card_name }}</p>  
 {% endblock %}     
 

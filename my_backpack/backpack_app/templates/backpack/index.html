@@ -8,15 +8,24 @@
     </head>
     <body>
         <h1>Welcome To MyBackpack</h1>   
-        <h2>Here are the options</h2>
-        <h3>{{hello}}</h3>
-            <ul>
+        <h2>{% comment %}hello}}{% endcomment%}FIND THE PRICE OF ANY MTG CARD</h3>
+           {%comment%} <ul>
                 {% for choice in options %}
                 <li>{{choice}}</li>
                 {% endfor %}
             </ul>
-            <a href="{% url 'forms' %}">Take me to forms</a><br>
-            <a href="{% url 'add' %}">Take me to add</a>    
+        {% endcomment %}
+        <h2> <form action="{% url 'backpack:index' %}" method="POST">
+                {% csrf_token %}
+                {{ form }}              
+                <input type="submit"  name='index'>
+            </form> 
+        </h2>
+        <p> Card searched: {{ card_name }} <br></br>
+            Cost of card: {{ card_price }} </p>
+           
+{% comment %} <a href="{% url 'backpack:forms' %}">Take me to forms</a><br>
+            <a href="{% url 'backpack:add' %}">Take me to add</a> {% endcomment %}
 
     </body>
 </html>

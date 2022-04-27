@@ -3,11 +3,11 @@
 <html lang="en">
     <head>
         <title>Backpack</title>
-        <link href="{% static 'backpack/styles.css' %}" rel="stylesheet">
+        <link href="{% static 'backpack/styles.css' %}" rel="stylesheet"> 
     </head>
     <body>
         {% block body %}
         {% endblock %}
-    <a href="{% url 'index' %}">Home</a>
+    <a href="{% url 'backpack:index' %}">Home</a>
     </body>
 </html>
