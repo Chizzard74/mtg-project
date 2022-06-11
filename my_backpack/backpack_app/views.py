@@ -79,7 +79,18 @@ def get_price(name):
 #         return render(request, "backpack/forms.html", args)
 
 def index(request):
-    return render(request, "backpack/index.html")
+    if request.method == "POST":
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data["card_name"]
+            args = {
+                "name": name,
+                "price": get_price(name)
+            }
+            
+            return render(request, "backpack/index.html", args)
+        return render(request, 'backpack/index.html')
+    return render(request, 'backpack/index.html')
 
 def color(request):
     return render(request, 'backpack/color.html')
