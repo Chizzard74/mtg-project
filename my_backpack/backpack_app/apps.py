@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class BackpackAppConfig(AppConfig):
-    name = 'backpack_app'
+    name = 'backpack'

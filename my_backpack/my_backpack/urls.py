@@ -18,6 +18,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('backpack/', include("backpack_app.urls"))
+    path('', include("backpack_app.urls"))
     
 ]

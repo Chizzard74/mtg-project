@@ -1,31 +1,13 @@
-{% load static %}
+{% extends "backpack/layouts.html" %}
+ 
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>backpack</title>
-        <link href="{% static 'backpack/styles.css' %}" rel="stylesheet">
-    </head>
-    <body>
-        <h1>Welcome To MyBackpack</h1>   
-        <h2>{% comment %}hello}}{% endcomment%}FIND THE PRICE OF ANY MTG CARD</h3>
-           {%comment%} <ul>
-                {% for choice in options %}
-                <li>{{choice}}</li>
-                {% endfor %}
-            </ul>
-        {% endcomment %}
-        <h2> <form action="{% url 'backpack:index' %}" method="POST">
-                {% csrf_token %}
-                {{ form }}              
-                <input type="submit"  name='index'>
-            </form> 
-        </h2>
-        <p> Card searched: {{ card_name }} <br></br>
-            Cost of card: {{ card_price }} </p>
-           
-{% comment %} <a href="{% url 'backpack:forms' %}">Take me to forms</a><br>
-            <a href="{% url 'backpack:add' %}">Take me to add</a> {% endcomment %}
-
-    </body>
-</html>
+{% block body %}
+   <h1>Enter a card name</h1> 
+	   <form action="{% url 'backpack:index' %}" method="POST">
+		   {% csrf_token %}
+		   {{ form }}
+		   <input type = "text" name='form'>
+		   <input type="submit">
+	   </form> 
+	   <p>Your search history: {{ card_name }}</p>  
+{% endblock %}     

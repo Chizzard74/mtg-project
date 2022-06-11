@@ -1,13 +1,9 @@
-#
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django import forms
 from django.urls import reverse
 
 # Create your views here.
-options = ["get_cardname", "get_price", "get_stats"]
-
-cards = []
 
 class TaskForm(forms.Form):
     card_name = forms.CharField(label="Card Name")
@@ -82,34 +78,11 @@ def get_price(name):
 #         args = {"form": form, "card_name": card_name}
 #         return render(request, "backpack/forms.html", args)
 
-
-def make_hello():
-    return "Function output goes here"
-
-def func():
-    return "Sample function output here"
-
 def index(request):
-    if request.method == "POST":
-        form = TaskForm(request.POST)
-        if form.is_valid():
-            card_name = form.cleaned_data["card_name"]  
-    
-            args = {
-                    "options": options,
-                    "hello": make_hello,
-                    "recent_searches": cards,
-                    "form": form,
-                    "card_name": get_raw_data_by_name(card_name),
-                    "card_price": get_price(card_name)             
-                    }
-            return render(request, "backpack/index.html", args)
-        else:
-            return HttpResponse("FAILED ATTEMPT")
-    else:
-        return HttpResponse("FAILED ATTEMPT")
+    return render(request, "backpack/index.html")
 
-
+def color(request):
+    return render(request, 'backpack/color.html')
 
 def library(request):
     return HttpResponse("This page will be the library.")

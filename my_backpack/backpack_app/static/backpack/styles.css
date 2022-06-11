@@ -1,8 +1,9 @@
 body {
     background-color: aqua;
 }
-h1 {
+h1, h2 {
     font-family: sans-serif;
     font-size: 90px;
     text-align: center;
 }
+

@@ -1,11 +1,5 @@
 import requests as r
 
-#things to do:
-#raise bad json errors, stronger queries
-print(r)
-
-
-
 def get_raw_data_by_name(name=None)-> bool:
     """Gets the raw data of a card and searches for it
        on scryfall.net. If no name is provided, ask the
@@ -241,6 +235,16 @@ class Library():
             bool: True if empty, False otherwise.
         """
         return self.size == 0
+    
+    def get_random_capp(self)->str:
+        """Makes an api call to get a random
+        card from the Streets of new Cappena set.
+
+        Returns:
+            str: Name of a random card from the SNC set.
+        """
+        random_card = r.get("https://api.scryfall.com/cards/random?q=e:snc")
+        return random_card.json()['name']
     
     
     def get_random_kami(self)->str:

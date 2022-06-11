@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <title>Color Changing Page</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+</head>
+<body id="s1">
+	<div>
+		<main>
+			<h2>Change the Hue, Saturation, and Light</h2>
+				<section>
+					<label>Hue</label><input type="range" id='hue' step="1" min="0" max="360" value="0">
+					<label>Saturation</label><input type="range" id='saturation' step="1" min="0" max="100" value="100">
+					<label>Light</label><input type="range" step="1" id='light' min="0" max="100" value="50">
+
+					<p class="output" id="output-display"></p>
+				</section>
+		</main>
+	</div>
+	<script>
+		function showColor(){
+			//get all the values and vars
+			let h = document.getElementById('hue').value;
+			let s = document.getElementById('saturation').value;
+			let l = document.getElementById('light').value;
+
+			//this takes the three values and formats them for a background color
+			let color = `hsl(${h}, ${s}%, ${l}%)`;
+			
+			//this displays the numerical values for hsl
+			output = document.getElementById('output-display');
+			output.innerHTML = color;
+
+			//this changes color
+			document.body.style.backgroundColor = color;			
+		}
+	document.getElementById('hue').addEventListener('input', showColor);
+	document.getElementById('saturation').addEventListener('input', showColor);
+	document.getElementById('light').addEventListener('input', showColor);
+	</script>
+</body>
+</html>

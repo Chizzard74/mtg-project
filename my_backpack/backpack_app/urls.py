@@ -2,9 +2,11 @@ from django.urls import path
 from . import views
 
 app_name = "backpack"
+
 urlpatterns = [
     path("", views.index, name="index"),
-    path("library", views.library, name="library")#,
+    path("library", views.library, name="library"),
+    path("color", views.color, name="color"),
     #path("<str:name>", views.greet, name="greet"),
     #this path is for add page
     #path("price/<str:name>", views.price, name="price"),
