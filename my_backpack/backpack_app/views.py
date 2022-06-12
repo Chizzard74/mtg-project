@@ -57,17 +57,10 @@ def get_price(name):
     if validate_name(name):
         res = r.get(f"https://api.scryfall.com/cards/named?fuzzy={name}")
         json_response = res.json()
-        return f"""The cost of {name} is {json_response["prices"]['usd']}"""
+        return f"""The cost of {name.title()} is {json_response["prices"]['usd']}."""
     else:
         return "Sorry, that was not a valid name"
 
-     
-
-# def price(request,name):
-#     return render(request, "backpack:price", {
-#         "name": get_raw_data_by_name(name),
-#         "price": get_price(get_raw_data_by_name(name))
-#     })
 
 # def form(request):
 #      if request.method == "POST":
