@@ -2,13 +2,17 @@
  
 
  {% block body %}
-    <h1>Enter a card name</h1> 
+    <h1> Forms </h1>
+    <p>This form is the base for the price form/p> 
         <form action="{% url 'backpack:index' %}" method="POST">
             {% csrf_token %}
             {{ form }}
             <input type = "text" name='form'>
             <input type="submit">
         </form> 
-        <p>Your search history: {{ card_name }}</p>  
+        <p>here should be the parameter</p>
+        <div>
+            <h3>{{ testing }}</h3>
+        </div>
 {% endblock %}     
 

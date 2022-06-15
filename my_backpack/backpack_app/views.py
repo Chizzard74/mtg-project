@@ -57,7 +57,7 @@ def get_price(name):
     if validate_name(name):
         res = r.get(f"https://api.scryfall.com/cards/named?fuzzy={name}")
         json_response = res.json()
-        return f"""The cost of {name.title()} is {json_response["prices"]['usd']}."""
+        return f"""The cost of {json_response['name']} is {json_response["prices"]['usd']}."""
     else:
         return "Sorry, that was not a valid name"
 
@@ -72,18 +72,7 @@ def get_price(name):
 #         return render(request, "backpack/forms.html", args)
 
 def index(request):
-    if request.method == "POST":
-        form = TaskForm(request.POST)
-        if form.is_valid():
-            name = form.cleaned_data["card_name"]
-            args = {
-                "name": name,
-                "price": get_price(name)
-            }
-            
-            return render(request, "backpack/index.html", args)
-        return render(request, 'backpack/index.html')
-    return render(request, 'backpack/index.html')
+    return render(request, "backpack/index.html")
 
 def price(request):
     if request.method == "POST":
@@ -98,12 +87,19 @@ def price(request):
         return render(request, 'backpack/price.html')
     return render(request, 'backpack/price.html')
 
+
 def color(request):
     return render(request, 'backpack/color.html')
 
+def resources(request):
+    return render(request, 'backpack/resources.html')
+
 def library(request):
-    return HttpResponse("This page will be the library.")
+    return render(request, 'backpack/library.html')
+    #return HttpResponse("This page will be the library.")
 
-def bootstrap(request):
-    return render(request, "backpack/bootstrap.html")
-
+def form_page(request,testing):
+    args ={
+        "testing": testing
+    }
+    return render(request, 'backpack/form_page.html', args)

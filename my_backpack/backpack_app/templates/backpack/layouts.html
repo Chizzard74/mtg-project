@@ -1,14 +1,35 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Backpack</title>
-        <link href="{% static 'backpack/styles.css' %}" rel="stylesheet"> 
-    </head>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">    
+  </head>
+  <div class="container-fluid" style="height:100vh; overflow-hidden; background:linear-gradient(white,black);">  
+  <nav  class="navbar navbar-expand-lg bg-dark ">
+    <div class="container-fluid">
+      <a class="navbar-brand text-light " href="/">🎒</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <ul class="nav justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link active text-light" aria-current="page" href="/library">Library</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" href="/price">Pricing</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" href="/resources">Resources</a>
+        </li>
+      </ul>
+    </div>
+  </nav> 
     <body>
         {% block body %}
         {% endblock %}
-    <a href="{% url 'backpack:index' %}">Home</a>
+    
     <a href="{% url 'backpack:color' %}">Color Changing Page</a>
     </body>
 </html>

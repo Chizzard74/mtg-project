@@ -2,7 +2,10 @@
  
 
 {% block body %}
-   <h1>Enter a card name</h1> 
+<h1 class="bold text-center text-decoration-underline">One Backpack to Rule Them All ...
+    
+</h1>
+   <h2>Enter a card name</h2> 
 	   <form name='card_name' action="{% url 'backpack:price' %}" method="POST">
 		   {% csrf_token %}
 		   {{ form }}
