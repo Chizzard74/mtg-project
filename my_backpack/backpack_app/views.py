@@ -85,25 +85,25 @@ def index(request):
         return render(request, 'backpack/index.html')
     return render(request, 'backpack/index.html')
 
+def price(request):
+    if request.method == "POST":
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data["card_name"]
+            args = {
+                "name": name,
+                "card_price": get_price(name)
+            }            
+            return render(request, "backpack/price.html", args)
+        return render(request, 'backpack/price.html')
+    return render(request, 'backpack/price.html')
+
 def color(request):
     return render(request, 'backpack/color.html')
 
 def library(request):
     return HttpResponse("This page will be the library.")
 
-#create functions here that CRUD the library
+def bootstrap(request):
+    return render(request, "backpack/bootstrap.html")
 
-# def greet(request, name):
-#     return render(request, "backpack/greet.html", {
-#         "name": name.lower()
-#     })
-
-
-    
-# def add(request):    
-#     return render(request, "backpack/add.html", {
-#         "func": func                  
-#      })
-
-
-#create functions here that SEARCH apis

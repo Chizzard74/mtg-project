@@ -1,6 +1,14 @@
 {% extends "backpack/layouts.html" %}
+ 
 
 {% block body %}
-    
-    <p>The current price of {{ name }} is {{ price }}</p>
-{% endblock %}
+   <h1>Enter a card name</h1> 
+	   <form name='card_name' action="{% url 'backpack:price' %}" method="POST">
+		   {% csrf_token %}
+		   {{ form }}
+		   <input type = "text" name='card_name'>
+		   <input type="submit">
+	   </form> 
+	  <p> {{ card_price }} </p>
+
+{% endblock %} 

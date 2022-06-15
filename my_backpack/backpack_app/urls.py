@@ -7,9 +7,10 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("library", views.library, name="library"),
     path("color", views.color, name="color"),
+    path("bootstrap", views.bootstrap, name="bootstrap"),
     #path("<str:name>", views.greet, name="greet"),
     #this path is for add page
-    #path("price", views.price, name="price"),
+    path("price", views.price, name="price")
     #path("add", views.add,  name="add"),
     #this path is add/CARDNAME which will use the cardname for parameter
     #path("add/<str:card>", views.add, name="add"),    
