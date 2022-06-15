@@ -79,14 +79,22 @@ def price(request):
         form = TaskForm(request.POST)
         if form.is_valid():
             name = form.cleaned_data["card_name"]
+            res = r.get(f"https://api.scryfall.com/cards/named?fuzzy={name}")
+            json_response = res.json()
+            img = json_response['image_uris']['normal']
+            title = json_response['name']
             args = {
                 "name": name,
-                "card_price": get_price(name)
+                "card_price": get_price(name),
+                "img": img,
+                'title': title
             }            
-            return render(request, "backpack/price.html", args)
+            return render(request, "backpack/resources.html", args)
         return render(request, 'backpack/price.html')
     return render(request, 'backpack/price.html')
 
+def card_view(request):
+    return render(request, 'backpack/card_view.html')
 
 def color(request):
     return render(request, 'backpack/color.html')
@@ -103,3 +111,5 @@ def form_page(request,testing):
         "testing": testing
     }
     return render(request, 'backpack/form_page.html', args)
+
+

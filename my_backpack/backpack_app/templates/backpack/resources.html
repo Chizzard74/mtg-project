@@ -2,4 +2,23 @@
 
 {% block body %}
 
+<h1 class="bold text-center ">Viewing {{ title }}
+<div class="d-flex justify-content-evenly align-items-center flex-wrap">
+    <div class="row">
+        <div class="col">
+          <div class="card" style="width: 18rem;">
+              <img src="{{img}}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{ title }}</h5>
+                <p class="card-text">{{ card_price }}</p>
+                <div class="container">
+                    <a class="btn btn-primary " href="#" role="button">Buy Me</a>
+                <button class="btn btn-primary"  type="submit">Add Me</button></div>
+            
+                  </div>
+                </div>
+        </div>
+    </div>
+    
+</div>
 {% endblock %}
