@@ -6,9 +6,13 @@ app_name = "backpack"
 urlpatterns = [
     path("", views.index, name="index"),
     path("library", views.library, name="library"),
+    path('add', views.add, name="add"),
     path("color", views.color, name="color"),
     path("price", views.price, name="price"),
-    path("resources", views.resources, name="resources"),    
+    path("resources", views.resources, name="resources"),
+    path('purchase', views.purchase, name="purchase"),  
+    path('login_view', views.login_view, name='login_view'),
+    path('logout_view', views.logout_view, name='logout_view'),       
     #path("add", views.add,  name="add"),
     #this path is add/CARDNAME which will use the cardname for parameter
     #path("add/<str:card>", views.add, name="add"),    

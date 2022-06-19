@@ -12,8 +12,12 @@
                 <h5 class="card-title">{{ title }}</h5>
                 <p class="card-text">{{ card_price }}</p>
                 <div class="container">
-                    <a class="btn btn-primary " href="#" role="button">Buy Me</a>
-                <button class="btn btn-primary"  type="submit">Add Me</button></div>
+                  <form name='card_name' action="{% url 'backpack:add' %}" method="POST">
+                    {% csrf_token %}
+                    {{ form }}
+                    <input type="submit" name='add'>
+                  </form> 
+                </div>
             
                   </div>
                 </div>
@@ -21,4 +25,6 @@
     </div>
     
 </div>
+
+
 {% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'backpack/layouts.html' %}
+
+{% block body %}
+
+<h1>Add Cards to Your Backpack</h1>
+
+<h2>You've just added {{ session_name_data }} to your backpack</h2>
+
+<a button href="{% url 'backpack:library' %}" role="button">View My Collection</a>
+
+{% endblock %}
