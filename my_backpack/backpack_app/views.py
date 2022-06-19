@@ -182,9 +182,17 @@ def add(request):
 def library(request):
     try:
         name_dict = request.session['name']
+        img_builder= []
         no_duplicates = set(name_dict)
+        for name in no_duplicates:
+            req = r.get(f"https://api.scryfall.com/cards/named?fuzzy={name}")
+            json_response = req.json()
+            res = json_response['image_uris']['small']
+            img_builder.append(res)
         args={        
-            "added_card": no_duplicates
+            "added_card": no_duplicates,
+            "img_builder": img_builder,
+            "card": name 
         }  
         return render(request, 'backpack/library.html', args)
     except:
