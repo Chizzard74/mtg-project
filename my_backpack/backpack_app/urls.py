@@ -12,10 +12,7 @@ urlpatterns = [
     path("resources", views.resources, name="resources"),
     path('purchase', views.purchase, name="purchase"),  
     path('login_view', views.login_view, name='login_view'),
-    path('logout_view', views.logout_view, name='logout_view'),       
-    #path("add", views.add,  name="add"),
-    #this path is add/CARDNAME which will use the cardname for parameter
-    #path("add/<str:card>", views.add, name="add"),    
+    path('logout_view', views.logout_view, name='logout_view'),  
     path("form_page/<str:testing>", views.form_page, name="form_page")
     
 ]

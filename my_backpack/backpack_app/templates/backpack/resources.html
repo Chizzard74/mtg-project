@@ -15,7 +15,7 @@
                   <form name='card_name' action="{% url 'backpack:add' %}" method="POST">
                     {% csrf_token %}
                     {{ form }}
-                    <input type="submit" name='add'>
+                    <input type="submit" placeholder="Add" name='add'>
                   </form> 
                 </div>
             

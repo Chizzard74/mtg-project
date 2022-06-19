@@ -100,8 +100,9 @@ def process_form(form, session_data):
 
 
 def index(request):
-    request.session['key'] = random.random()
     print(request.session.items())
+    if not request.session['name']:
+        request.session['name'] = []
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("backpack:login_view"))
     return render(request, "backpack/index.html")
@@ -136,18 +137,30 @@ def price(request):
     if request.method == "POST":
         form = TaskForm(request.POST)            
         if form.is_valid():
-            name = form.cleaned_data["card_name"]
-            request.session['name'] = name
+            name = form.cleaned_data["card_name"]            
             res = r.get(f"https://api.scryfall.com/cards/named?fuzzy={name}")
             json_response = res.json()
             img = json_response['image_uris']['normal']
-            title = json_response['name']            
-            args = {
+            title = json_response['name']
+            if title in request.session['name']:
+                args = {
                 "name": name,
                 "card_price": get_price(name),
                 "img": img,
-                'title': title,                                                
-            }
+                'title': title,
+                'req': request.session['name']
+                }
+                print(request.session.items())
+                return render(request, "backpack/resources.html", args)
+            else:
+                request.session['name'] += [title]
+                args = {
+                    "name": name,
+                    "card_price": get_price(name),
+                    "img": img,
+                    'title': title,
+                    'req': request.session['name']
+                    }                         
             print(request.session.items())
             return render(request, "backpack/resources.html", args)
     return render(request, 'backpack/price.html')
@@ -169,8 +182,12 @@ def add(request):
     return render(request, "backpack/add.html", args)
 
 def library(request):
-            
-    return render(request, 'backpack/library.html')
+    name_dict = request.session['name']
+    no_duplicates = set(name_dict)
+    args={        
+        "added_card": no_duplicates
+    }        
+    return render(request, 'backpack/library.html', args)
     #return HttpResponse("This page will be the library.")
     
 def purchase(request, card=None):
@@ -186,6 +203,7 @@ def form_page(request,testing):
         "testing": testing
     }
     return render(request, 'backpack/form_page.html', args)
+
 
 
 
