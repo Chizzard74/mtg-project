@@ -101,8 +101,7 @@ def process_form(form, session_data):
 
 def index(request):
     print(request.session.items())
-    if not request.session['name']:
-        request.session['name'] = []
+
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("backpack:login_view"))
     return render(request, "backpack/index.html")
@@ -122,9 +121,7 @@ def login_view(request):
             return HttpResponseRedirect(reverse("backpack:index"))
         # Otherwise, return login page again with new context
         else:
-            return render(request, "backpack/login.html", {
-                "message": "Invalid Credentials"
-            })
+            return render(request, "backpack/login_view.html",)
     return render(request, "backpack/login_view.html")
 
 def logout_view(request):
@@ -142,7 +139,8 @@ def price(request):
             json_response = res.json()
             img = json_response['image_uris']['normal']
             title = json_response['name']
-            if title in request.session['name']:
+            try:
+                request.session['name'] += [title]
                 args = {
                 "name": name,
                 "card_price": get_price(name),
@@ -152,8 +150,8 @@ def price(request):
                 }
                 print(request.session.items())
                 return render(request, "backpack/resources.html", args)
-            else:
-                request.session['name'] += [title]
+            except:
+                request.session['name'] = [title]
                 args = {
                     "name": name,
                     "card_price": get_price(name),
@@ -161,8 +159,8 @@ def price(request):
                     'title': title,
                     'req': request.session['name']
                     }                         
-            print(request.session.items())
-            return render(request, "backpack/resources.html", args)
+                print(request.session.items())
+                return render(request, "backpack/resources.html", args)               
     return render(request, 'backpack/price.html')
 
 def card_view(request):
@@ -182,12 +180,18 @@ def add(request):
     return render(request, "backpack/add.html", args)
 
 def library(request):
-    name_dict = request.session['name']
-    no_duplicates = set(name_dict)
-    args={        
-        "added_card": no_duplicates
-    }        
-    return render(request, 'backpack/library.html', args)
+    try:
+        name_dict = request.session['name']
+        no_duplicates = set(name_dict)
+        args={        
+            "added_card": no_duplicates
+        }  
+        return render(request, 'backpack/library.html', args)
+    except:
+        request.session['name'] = []
+        return render(request, 'backpack/library.html')
+             
+   
     #return HttpResponse("This page will be the library.")
     
 def purchase(request, card=None):
