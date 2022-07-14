@@ -100,8 +100,7 @@ def process_form(form, session_data):
 
 
 def index(request):
-    print(request.session.items())
-
+    get_session_data(request)
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("backpack:login_view"))
     return render(request, "backpack/index.html")
@@ -148,20 +147,33 @@ def price(request):
                 'title': title,
                 'req': request.session['name']
                 }
+                add_to_backpack()
                 print(request.session.items())
                 return render(request, "backpack/resources.html", args)
             except:
                 request.session['name'] = [title]
                 args = {
                     "name": name,
-                    "card_price": get_price(name),
                     "img": img,
+                    "card_price": get_price(name),
                     'title': title,
                     'req': request.session['name']
                     }                         
                 print(request.session.items())
                 return render(request, "backpack/resources.html", args)               
     return render(request, 'backpack/price.html')
+
+def get_session_data(request):
+    sesh = request.session.items()
+    print(sesh)
+
+def add_to_backpack(name, img_link, price):
+    backpack = MyBackpack()
+    backpack['card_name'] = name
+    backpack['image_string'] = img_link
+    backpack['price'] = price
+    backpack.save()
+    return backpack
 
 def card_view(request):
     return render(request, 'backpack/card_view.html')
@@ -180,24 +192,26 @@ def add(request):
     return render(request, "backpack/add.html", args)
 
 def library(request):
-    try:
-        name_dict = request.session['name']
-        img_builder= []
-        no_duplicates = set(name_dict)
-        for name in no_duplicates:
-            req = r.get(f"https://api.scryfall.com/cards/named?fuzzy={name}")
-            json_response = req.json()
-            res = json_response['image_uris']['small']
-            img_builder.append(res)
-        args={        
-            "added_card": no_duplicates,
-            "img_builder": img_builder,
-            "card": name 
-        }  
-        return render(request, 'backpack/library.html', args)
-    except:
-        request.session['name'] = []
-        return render(request, 'backpack/library.html')
+    #if "name" in request.session.items():
+    print("accepted")
+    
+    # for card in backpack:
+    #     req = r.get(f"https://api.scryfall.com/cards/named?fuzzy={name}")
+    #     json_response = req.json()
+    #     res = json_response['image_uris']['small']
+    #     name = json_response['name']            
+    # args={        
+    #     "added_card": no_duplicates,
+    #     "res": res,
+    #     "card": name 
+    # }  
+    return render(request, 'backpack/library.html', {
+        "backpack": MyBackpack().objects.all()
+        }) #, args)
+    # else:
+    #     print("denied")
+    #     request.session['name'] = []
+    #     return render(request, 'backpack/library.html')
              
    
     #return HttpResponse("This page will be the library.")
